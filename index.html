@@ -61,13 +61,13 @@
 
             <div class="input-box">
               <span class="icon"><i class="bx bxs-envelope"></i> </span>
-              <input type="email" required />
+              <input type="email" required id="email_signin"/>
               <label>Email</label>
             </div>
 
             <div class="input-box">
               <span class="icon"><i class="bx bxs-lock-alt"></i></span>
-              <input type="password" required />
+              <input type="password" required id="password_signin"/>
               <label>password</label>
             </div>
 
@@ -82,7 +82,7 @@
               <a href="#">Forgot password?</a>
             </div>
 
-            <button type="submit" class="btn">Sign In</button>
+            <button type="submit" class="btn" id="signin" >Sign In</button>
 
             <div class="login-register">
               <p>
@@ -99,19 +99,25 @@
 
             <div class="input-box">
               <span class="icon"><i class='bx bxs-user'></i> </span>
-              <input type="text" required />
+              <input type="text" required id="user_name"/>
               <label>Name</label>
             </div>
 
             <div class="input-box">
               <span class="icon"><i class="bx bxs-envelope"></i> </span>
-              <input type="email" required />
+              <input type="email" required id="user_email"/>
               <label>Email</label>
             </div>
 
             <div class="input-box">
+              <span class="icon"><i class="bx bxs-envelope"></i> </span>
+              <input type="number" required id="user_phone"/>
+              <label>Phone</label>
+            </div>
+
+            <div class="input-box">
               <span class="icon"><i class="bx bxs-lock-alt"></i></span>
-              <input type="password" required />
+              <input type="password" required id="user_password"/>
               <label> Create password</label>
             </div>
 
@@ -126,7 +132,7 @@
               
             </div>
 
-            <button type="submit" class="btn">Sign Up</button>
+            <button type="submit" class="btn" onclick="registerUser()">Sign Up</button>
 
             <div class="login-register">
               <p>
@@ -141,6 +147,6 @@
       </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>
