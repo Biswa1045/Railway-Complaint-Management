@@ -1,9 +1,3 @@
-const mysql = require('mysql2');
-const bcrypt = require('bcrypt');
-const express = require('express');
-const bodyParser = require('body-parser');
-
-
 const loregBox = document.querySelector('.loreg-box');
 const loginLink = document.querySelector('.login-link');
 const registerLink = document.querySelector('.register-link');
@@ -16,6 +10,12 @@ registerLink.addEventListener('click', ()=>{
 loginLink.addEventListener('click', ()=>{
     loregBox.classList.remove('active');
 });
+
+
+const mysql = require('mysql2');
+const bcrypt = require('bcrypt');
+const express = require('express');
+const bodyParser = require('body-parser');
 
 
 
@@ -32,14 +32,15 @@ const connection = mysql.createConnection({
   app.use(bodyParser.json());
 
  
-  // connect to database
+ 
+
+  //register user
+    function registerUser() {
+       // connect to database
   connection.connect((err) => {
     if (err) throw err;
     console.log('Connected to MySQL database!');
   });
-
-  //register user
-    function registerUser() {
     const prefix = 'US';
     const randomNumber = Math.floor(Math.random() * 100000);
     const formattedNumber = randomNumber.toString().padStart(5, '0');
