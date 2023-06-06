@@ -1,4 +1,6 @@
 {
+    "typescript.suggestionActions.enabled": true,
+    "javascript.suggestionActions.enabled": false,
     "sqltools.connections": [
         {
             "mysqlOptions": {
