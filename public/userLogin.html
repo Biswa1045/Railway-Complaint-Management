@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Page</title>
+    <link rel="stylesheet" href="userLoginCSS.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <p1 style="color: aqua; font-size: 50px">Complaint Management System</p1>
+      <nav class="navbar">
+        <a href="userLogin.html" style="font-size: x-large ;">User</a>
+        <a href="adminLogin.html" style="font-size: x-large ;" >Admin</a>
+        <a href="dealerLogin.html" style="font-size: x-large ;" >Dealer</a>
+        <!-- <a href="#">Contact Us</a> -->
+      </nav>
+
+      <!-- <form action="#" class="search-bar">
+        <input type="text" placeholder="search...." />
+        <button type="submit"><i class="bx bx-search"></i></button>
+      </form> -->
+    </header>
+
+    <div class="background"></div>
+    <div class="container">
+      <div class="content">
+        <h2 class="logo"><i class="bx bxl-firebase"></i>Sid</h2>
+
+        <div class="text-sci">
+          <h2>
+            Welcome! <br />
+            <span>To Our Helping Desk</span>
+          </h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor
+            accusantium non provident animi ex consequatur adipisci dolores
+            labore praesentium aspernatur natus, quidem distinctio soluta ea
+            quis sapiente veritatis optio porro fuga a.
+          </p>
+
+          <div class="social-icons">
+            <a href="#"><i class="bx bxl-linkedin"></i></a>
+            <a href="#"><i class="bx bxl-facebook"></i></a>
+            <a href="#"><i class="bx bxl-instagram-alt"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+            <a href="#"><i class="bx bxl-github"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="loreg-box">
+        <div class="form-box login">
+          <form id="signinform" action="#">
+            <!-- <h3 style="font-family:Arial, Helvetica, sans-serif; font-size: x-large; position: relative;
+            left: 8.5rem; bottom: 2rem; ">User</h3> -->
+            <img src="user_img.png" style="width: 70px; height: 70px; position: relative; left: 8rem; bottom: 1rem; border-radius: 50px;" alt="">
+            <!-- <h3 style="font-family: Arial, Helvetica, sans-serif; font-size: x-large; position: relative; bottom: 2rem; left: 9.5rem;">User</h3> -->
+            <h2>Sign In</h2>
+
+            <div class="input-box">
+              <span class="icon"><i class="bx bxs-envelope"></i> </span>
+              <input type="email" required id="email_signin" name="email_signin"/>
+              <label>Email</label>
+            </div>
+
+            <div class="input-box">
+              <span class="icon"><i class="bx bxs-lock-alt"></i></span>
+              <input type="password" required id="password_signin" name="password_signin"/>
+              <label>password</label>
+            </div>
+
+            <div class="remember-forgot">
+              <label
+                ><input
+                  type="checkbox"
+                  style="position: relative; top: 1.5px"
+                />
+                Remember me</label
+              >
+              <a href="#">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="btn" id="signin">Sign In</button>
+
+            <div class="login-register">
+              <p>
+                Don't have an account?
+                <a href="#" class="register-link">Sign Up</a>
+              </p>
+            </div>
+          </form>
+        </div>
+        <!-- ----------------- -->
+        <div class="form-box register">
+          <form  id="signupform" action="#">
+            <img src="user_img.png" style="width: 70px; height: 70px; position: relative; left: 8rem; bottom: 1rem; border-radius: 50px;" alt="">
+            <h2>Sign Up</h2>
+
+            <div class="input-box">
+              <span class="icon"><i class='bx bxs-user'></i> </span>
+              <input type="text" required name="username" id="user_name" />
+              <label>Name</label>
+            </div>
+
+            <div class="input-box">
+              <span class="icon"><i class="bx bxs-envelope"></i> </span>
+              <input type="number" required name="phone" id="user_phone" />
+              <label>Phone</label>
+            </div>
+            <div class="input-box">
+              <span class="icon"><i class="bx bxs-lock-alt"></i></span>
+              <input type="password" required  name="password"
+              id="user_password"/>
+              <label> Create password</label>
+            </div>
+
+            <div class="remember-forgot">
+              <label
+                ><input
+                  type="checkbox"
+                  style="position: relative; top: 1.5px"
+                />
+                I agree to the terms & conditions </label
+              >
+              
+            </div>
+
+            <button type="submit" class="btn">Sign Up</button>
+
+            <div class="login-register">
+              <p style="position: relative; bottom: 1rem;">
+                Already have an account?
+                <a href="#" class="login-link">Sign in</a>
+              </p>
+            </div>
+          </form>
+        </div>
+
+        <!-- -------------------------------- -->
+
+        
+
+
+
+      </div>
+    </div>
+
+    <script >
+
+
+
+
+const loregBox = document.querySelector('.loreg-box');
+const loginLink = document.querySelector('.login-link');
+const registerLink = document.querySelector('.register-link');
+
+
+registerLink.addEventListener('click', ()=>{
+    loregBox.classList.add('active');
+});
+
+loginLink.addEventListener('click', ()=>{
+    loregBox.classList.remove('active');
+});
+
+        document
+        .getElementById("signupform")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const formData = new FormData(e.target);
+          const res = await fetch("/registeruser", {
+            
+            mode: 'no-cors',
+
+            method: "POST",
+            // headers: {
+            //   "Content-Type": "multipart/form-data",
+            // },
+            body: formData,
+          });
+
+          if (res.ok) {
+            alert("User creation successful!");
+          } else {
+            const err = res.json();
+            alert(err.description);
+          }
+        });
+        
+        
+        //login
+        document
+        .getElementById("signinform")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const formDataSignin = new FormData(e.target);
+          const res = await fetch("/signinuser", {
+            method: "POST",
+            // headers: {
+            //   "Content-Type": "multipart/form-data",
+            // },
+            body: formDataSignin,
+          });
+          if (res.ok) {
+         //  const user = res.json();
+            alert("User login successful!");
+          } else {
+            const err = res.json();
+            alert(err.description);
+          }
+        });
+
+
+
+
+    </script>
+  </body>
+</html>

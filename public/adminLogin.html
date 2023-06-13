@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="adminLoginCSS.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <p1 style="color: aqua; font-size: 50px">Complaint Management System</p1>
+      <nav class="navbar">
+        <a href="userLogin.html" style="font-size: x-large ;">User</a>
+        <a href="adminLogin.html" style="font-size: x-large ;" >Admin</a>
+        <a href="dealerLogin.html" style="font-size: x-large ;" >Dealer</a>
+        <!-- <a href="#">Contact Us</a> -->
+      </nav>
+
+      <!-- <form action="#" class="search-bar">
+        <input type="text" placeholder="search...." />
+        <button type="submit"><i class="bx bx-search"></i></button>
+      </form> -->
+    </header>
+
+    <div class="background"></div>
+    <div class="container">
+      <div class="content">
+        <h2 class="logo"><i class="bx bxl-firebase"></i>Sid</h2>
+
+        <div class="text-sci">
+          <h2>
+            Welcome! <br />
+            <span>To Our Helping Desk</span>
+          </h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor
+            accusantium non provident animi ex consequatur adipisci dolores
+            labore praesentium aspernatur natus, quidem distinctio soluta ea
+            quis sapiente veritatis optio porro fuga a.
+          </p>
+
+          <div class="social-icons">
+            <a href="#"><i class="bx bxl-linkedin"></i></a>
+            <a href="#"><i class="bx bxl-facebook"></i></a>
+            <a href="#"><i class="bx bxl-instagram-alt"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+            <a href="#"><i class="bx bxl-github"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="loreg-box">
+        <div class="form-box login">
+          <form action="#"  id="signinAdminform" >
+            <img src="admin_icon.png" style="width: 70px; height: 70px; position: relative; left: 8rem; bottom: 1rem; border-radius: 50px;" alt="">
+            <!-- <h3 style="font-family: Arial, Helvetica, sans-serif; font-size: x-large; position: relative; bottom: 2rem; left: 8rem;">Admin</h3> -->
+            <h2>Sign In</h2>
+
+            <div class="input-box">
+                <span class="icon"><i class="bx bxs-envelope"></i> </span>
+                <input type="email" required id="phone_admin_signin" name="phone_admin_signin"/>
+                <label>ID</label>
+              </div>
+
+            <div class="input-box">
+              <span class="icon"><i class="bx bxs-lock-alt"></i></span>
+              <input type="password" required  id="password_admin_signin" name="password_admin_signin"/>
+              <label>password</label>
+            </div>
+
+            <div class="remember-forgot">
+              <label style="position: relative; top: 0.8rem;"
+                ><input
+                  type="checkbox"
+                  style="position: relative; top: 1.5px;" />
+               
+                Remember me
+                </label
+              >
+              <!-- <a href="#">Forgot password?</a> -->
+            </div>
+
+            <button type="submit" class="btn" style="position: relative; top:1rem" id="signin_admin">Sign In</button>
+
+            <!-- <div class="login-register">
+              <p>
+                Don't have an account?
+                <a href="#" class="register-link">Sign Up</a>
+              </p>
+            </div> -->
+          </form>
+        </div>
+       
+        
+
+
+
+      </div>
+    </div>
+
+     <script>
+ //login
+          document
+        .getElementById("signinAdminform")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const formDataSignin = new FormData(e.target);
+          const res = await fetch("/signinadmin", {
+            method: "POST",
+            // headers: {
+            //   "Content-Type": "multipart/form-data",
+            // },
+            body: formDataSignin,
+          });
+          if (res.ok) {
+         //  const user = res.json();
+            alert("Admin login successful!");
+          } else {
+            const err = res.json();
+            alert(err.description);
+          }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     </script> 
+  </body>
+</html>
