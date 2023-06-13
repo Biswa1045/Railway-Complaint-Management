@@ -29,7 +29,7 @@ const registerUserFields = [
 ];
 app.post("/registeruser", multer().none(), async function (req, res) {
   try {
-    const values = ["US0003"];
+    const values = ["US0003"];// userid will generated
 
     // validate request data against required fields
     for (const k of registerUserFields) {
@@ -48,6 +48,7 @@ app.post("/registeruser", multer().none(), async function (req, res) {
 
     const querystring =
       "INSERT INTO user_table (user_id, user_name, user_password, user_phone) VALUES (?, ?, ?, ?)";
+
 
     await sql.query(querystring, values);
     await sql.end();
