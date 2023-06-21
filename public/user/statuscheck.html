@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user_2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="statuscheckcss.css">
+</head>
+<body>
+    
+    
+    <div class="sidebar" id="ab">
+
+        <div class="logo"></div>
+        <u1 class="menu">
+          <img src="logo.png" style="position: relative; width: 100px; height: 100px; right: 1.5rem; bottom: 3rem;" alt="">
+            <li  style="position: relative; top: 2rem;">
+                <a href="#">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li  style="position: relative; top: 2rem;">
+                <a href="#">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+
+                <ul class="side-dropdown" >
+                    <img src="key.png"  alt="" srcset="" style="width: 20px; height: 20px; position: relative; top: 3.7rem; border-radius: 50%;">
+                    <li><a style="position: relative; left: 15px;" href="#">Change Password</a></li>
+                </ul>
+
+            </li>
+            <li class="active"  style="position: relative; top: 2rem;">
+                <a href="#">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Status Check</span>
+                </a>
+            </li>
+           
+            <li class="logout" style="position: relative; top: 20rem;">
+                <a href="#">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </u1>
+
+    </div>
+
+    <div class="main--content">
+
+      <h3 style="font-size: 35px; background: rgb(255, 0, 72); width: 50vw; position: relative; left: 19rem; padding-left: 4rem; padding-top: 7px; height: 4rem; border-radius: 15px; ">  IPAS COMPLAINT MANAGEMENT SYSTEM</h3>
+
+
+
+        <div class="header--wrapper" style="position: relative; top: 1rem; border-radius: 30px; height: 70vh; background:  rgb(137, 94, 178);">
+
+
+            <div class="header--title">
+              <i class="fa-sharp fa-solid fa-greater-than" style="font-size: x-large; position: relative; bottom: 10.7rem;"></i>
+                <h2 style="position: relative; bottom: 13rem; left: 30px; font-weight: bolder; font-size: 30px;">Status </h2>
+            </div>
+            
+            <img src="https://source.unsplash.com/160x160/?Chocolate" style="position: relative; bottom: 12.5rem; left: 73.5rem" alt=""/>
+
+
+
+
+
+            <div class="header0">
+              <h1 style="position: relative; right: 2.5rem; bottom: 5rem;">Complaint Id</h1>
+              <div class="complaint-form">
+                <form action="process-complaint.php" action="#" id="complaintBox">
+          
+                  <input style="position: relative; bottom: 6rem;" type="text" id="complaint_box" name="complaint_box-id" placeholder="Enter Complaint ID" required>
+                  <input  style="position: relative; left: 26rem; bottom: 9rem;" type="submit" value="Check Status">
+                </form>
+              </div>
+          
+            </div>
+
+
+            </div>
+
+
+            
+          
+           
+          
+          
+            <div class="dealer" style="position: relative; bottom: 15rem; left: 1rem;">
+              <div class="header1">
+                <h1 style="position: relative; bottom: 1rem;">Your Complaints</h1>
+              </div>
+          
+              <table>
+                <thead>
+                  <tr style=" position: relative; right: 16px;">
+                    <th>SL.No</th>
+                    <th>Com.ID</th>
+                    <th>Division</th>
+                    <th>Section</th>
+                    <th>Complaint Desc</th>
+                    <th>Status</th>
+                    <th>Admin Remarks</th>
+                    <th>Dealer Remarks</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td >1</td>
+                    <td>123</td>
+                    <td>Division A</td>
+                    <td>Section 1</td>
+                    <td>Complaint 1</td>
+                    <td style="position: relative; right: 9px;">Pending</td>
+          
+                  </tr>
+                  <tr style=" position: relative; right: 3px; background-color: transparent; ">
+                    <td>2</td>
+                    <td>456</td>
+                    <td>Division B</td>
+                    <td>Section 2</td>
+                    <td>Complaint 2</td>
+                    <td>closed</td>
+                    <td>that's a good bug</td>
+                    <td>that's a good bug</td>
+          
+                  </tr>
+          
+                  <!-- Add more rows as needed -->
+                </tbody>
+              </table>
+            </div>
+
+
+    </div>
+
+
+
+    
+
+
+    <script>
+
+const allDropdown = document.querySelectorAll('.sidebar .side-dropdown');
+
+allDropdown.forEach(item=> {
+    const a = item.parentElement.querySelector('a:first-child');
+    a.addEventListener('click',function(e){
+        e.preventDefault();
+
+        
+        this.classList.toggle('active');
+        item.classList.toggle('show');
+
+    })
+});
+
+        document
+        .getElementById("complaintBox")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const formDataSignin = new FormData(e.target);
+          const res = await fetch("/checkstatus", {
+            method: "GET",
+            // headers: {
+            //   "Content-Type": "multipart/form-data",
+            // },
+            body: formDataSignin,
+          });
+          if (res.ok) {
+         //  const user = res.json();
+          //  alert("User login successful!");
+            // goto home page
+          } else {
+            const err = res.json();
+            alert(err.description);
+          }
+        });
+
+
+
+
+
+
+
+
+
+    </script> 
+
+</body>
+</html>

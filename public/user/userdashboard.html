@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Design</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="userdashboardcss.css">
+</head>
+<body>
+    
+    
+    <div class="sidebar" id="ab">
+
+        <div class="logo"></div>
+        <u1 class="menu">
+            <img src="logo.png" style="position: relative; width: 100px; height: 100px; right: 1.5rem; bottom: 3rem;" alt="">
+            <li class="active" style="position: relative; top: 2rem;">
+                <a href="#">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li style="position: relative; top: 2rem;">
+                <a href="#">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+
+                <ul class="side-dropdown" >
+                    <img src="key.png"  alt="" srcset="" style="width: 20px; height: 20px; position: relative; top: 3.7rem; border-radius: 50%;">
+                    <li><a style="position: relative; left: 15px;" href="#">Change Password</a></li>
+                </ul>
+
+            </li>
+            <li style="position: relative; top: 2rem;">
+                <a href="#">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Status Check</span>
+                </a>
+            </li>
+           
+            <li class="logout" style="position: relative; top: 15rem;" >
+                <a href="#">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </u1>
+
+    </div>
+
+
+
+   
+
+    <div class="main--content" >
+
+        
+      <h3 style="font-size: 35px; background: rgb(255, 0, 72); width: 50vw; position: relative; left: 19rem; padding-left: 4rem; padding-top: 7px; height: 4rem; border-radius: 15px; ">  IPAS COMPLAINT MANAGEMENT SYSTEM</h3>
+
+
+        <div class="header--wrapper" style="position: relative; top: 1rem; border-radius: 30px; height: 112vh; background: rgb(137, 94, 178);">
+          
+            <div class="header--title" >
+              
+               
+               
+                
+            </div>
+            
+            <img src="https://source.unsplash.com/160x160/?human" style="position: relative; right: 50rem;" alt=""/>
+
+
+            <form style="max-width: 80%; position: relative; left: 8rem;" action="#" id="Complaintform" >
+               
+
+                <div class="formgroup">
+                    <label style="position: relative; top: 1.5rem; left: 2rem; bottom: 5rem;"  for="name">Name: </label>
+                    <input style="width: 20vw; position: relative; left: 7.5rem; bottom: 0.8rem;  border: 2px solid black;" type="text" id="name_complaint" name="name_complaint" required>
+                  </div>
+                
+                <div class="formgroup">
+                  <label style="position: relative; padding-left: 40rem; bottom: 5rem;"  for="phone">Phone Number: </label>
+                  <input style="width: 20vw; position: relative; left: 48.5rem; bottom: 6.6rem; border: 2px solid black;" type="text" id="phone_complaint" name="phone_complaint" required>
+                </div>
+
+
+               
+
+
+                <div class="formgroupoption" style="position: relative; padding-left: 4rem; bottom: 8.4rem;">
+                    <label for="section" style="position: relative; top: 2rem; right: 2rem;">Division: </label>
+                      <select style="width: 20vw; height: 34px; border: 2px solid black; position: relative; left: -0.6rem; top: 2rem; margin-top: 30px; " name="division" id="division">
+                        <option value="3101-BHUBANESWAR">3101-BHUBANESWAR</option>
+                        <option value="3102-KHURDA ROAD">3102-KHURDA ROAD</option>
+                        <option value="3103-SAMBALPUR">3103-SAMBALPUR</option>
+                        <option value="3104-WALTAIR">3104-WALTAIR</option>
+                        <option value="3105-MANCHESWAR">3105-MANCHESWAR</option>
+                        <option value="3106-CON-BBS">3106-CON-BBS</option>
+                        <option value="3107-CON-JJKR">3107-CON-JJKR</option>
+                        <option value="3108-CON-SBP">3108-CON-SBP</option>
+                        <option value="3109-CON-VSKP">3109-CON-VSKP</option>
+                        <option value="3131-ECOR TRAFFIC ACCOUNTS">3131-ECOR TRAFFIC ACCOUNTS</option>
+
+                      </select>
+                  </div>
+               
+
+
+
+                
+                <div class="formgroupoption" style="position: relative; padding-left: 40rem; bottom: 8.4rem;">
+                  <label for="section" style="position: relative; bottom: 1.5rem;">Section: </label>
+                    <select style="width: 20vw; height: 34px; border: 2px solid black; position: relative; left: 4.3rem; bottom: 30px;" name="section" id="section">
+                      <option value="Expenditure-I">Expenditure-I</option>
+                      <option value="Expenditure-II">Expenditure-II</option>
+                      <option value="Stores Bill - Stock">Stores Bill - Stock</option>
+                      <option value="Stores Bill - Non Stock">Stores Bill - Non Stock</option>
+                      <option value="Stores - Suspense">Stores - Suspense</option>
+                      <option value="Establishment Bills-Gazetted">Establishment Bills-Gazetted</option>
+                      <option value="Establishment Bills-Non Gazetted">Establishment Bills-Non Gazetted</option>
+                      <option value="PF Section">PF Section</option>
+                      <option value="Books Section">Books Section</option>
+                      <option value="Traffic Accounts">Traffic Accounts</option>
+                      <option value="Claims and Refunds (Traffic)">Claims and Refunds (Traffic)</option>
+                      <option value="Cash and Pay">Cash and Pay</option>
+                      <option value="Catering">Catering</option>
+                      <option value="Sleeper/Tr. Earning">Sleeper/Tr. Earning</option>
+                      <option value="Workmans Compensation">Workmans Compensation </option>
+                      <option value="Rly-Claims-Tribunal">Rly-Claims-Tribunal</option>
+                      <option value="IROF/GRS">IROF/GRS</option>
+                      <option value="Loans">Loans</option>
+                      <option value="NPS">NPS</option>
+                      <option value="FUEL">FUEL</option>
+                      <option value="Workshop Cordination">Workshop Cordination</option>
+
+                    </select>
+                </div>
+        
+                <div class="formgroup" style="position: relative; bottom: 6rem;">
+                  <label style="position: relative; left: 2.1rem;" for="description">Complaint Description</label>
+                  <textarea name="complaint_description" id="complaint_description" cols="30" rows="10" required></textarea>
+                </div>
+
+
+                
+                <input style="position: relative; left: 29rem; bottom: 6rem; width: 8rem;" type="submit" value="Submit" class="submit-btn">
+              </form>
+
+
+            </div>
+    </div>
+
+    <script >
+
+
+const allDropdown = document.querySelectorAll('.sidebar .side-dropdown');
+
+allDropdown.forEach(item=> {
+    const a = item.parentElement.querySelector('a:first-child');
+    a.addEventListener('click',function(e){
+        e.preventDefault();
+
+        
+        this.classList.toggle('active');
+        item.classList.toggle('show');
+
+    })
+});
+
+        document
+        .getElementById("Complaintform")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const formData = new FormData(e.target);
+          const res = await fetch("/registerComplaint", {
+
+
+            method: "POST",
+            // headers: {
+            //   "Content-Type": "multipart/form-data",
+            // },
+            body: formData,
+          });
+
+          if (res.ok) {
+            alert("Complaint registration successful!");
+          } else {
+            const err = res.json();
+            alert(err.description);
+          }
+        });
+
+        window.addEventListener('popstate', function (event) {
+ 
+ // history.pushState(null, null, window.location.href);
+});
+
+
+
+
+
+
+
+
+
+
+    </script> 
+
+</body>
+</html>

@@ -65,8 +65,8 @@
 
             <div class="input-box">
               <span class="icon"><i class="bx bxs-envelope"></i> </span>
-              <input type="email" required id="email_signin" name="email_signin"/>
-              <label>Email</label>
+              <input type="number" required id="phone_signin" name="phone_signin"/>
+              <label>Phone Number</label>
             </div>
 
             <div class="input-box">
@@ -207,9 +207,11 @@ loginLink.addEventListener('click', ()=>{
             // },
             body: formDataSignin,
           });
-          if (res.ok) {
+          if (res.redirected) {
+            window.location = res.url;
          //  const user = res.json();
-            alert("User login successful!");
+           // alert("User login successful!");
+            // goto home page
           } else {
             const err = res.json();
             alert(err.description);

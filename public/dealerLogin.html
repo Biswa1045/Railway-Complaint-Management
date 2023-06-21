@@ -57,7 +57,7 @@
       </div>
 
       <div class="loreg-box">
-        <div class="form-box login">5
+        <div class="form-box login">
           <form action="#" id="signinformDealer">
             <img src="dealer_img.png" style="width: 70px; height: 70px; position: relative; left: 8rem; bottom: 1rem; border-radius: 40px;" alt="">
             <!-- <h3 style="font-family: Arial, Helvetica, sans-serif; font-size: x-large; position: relative; bottom: 2rem; left: 8rem;">Admin</h3> -->
@@ -65,7 +65,7 @@
 
             <div class="input-box">
               <span class="icon"><i class="bx bxs-envelope"></i> </span>
-              <input type="email" required id="phone_dealer_signin" name="phone_dealer_signin"/>
+              <input type="number" required id="phone_dealer_signin" name="phone_dealer_signin"/>
               <label>ID</label>
             </div>
 
@@ -116,9 +116,10 @@
             // },
             body: formDataSignin,
           });
-          if (res.ok) {
+          if (res.redirected) {
          //  const user = res.json();
-            alert("Dealer login successful!");
+           // alert("Dealer login successful!");
+           window.location = res.url;
           } else {
             const err = res.json();
             alert(err.description);

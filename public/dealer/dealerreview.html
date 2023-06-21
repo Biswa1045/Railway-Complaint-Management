@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dealer_2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="dealerreviewcss.css" />
+</head>
+
+<body>
+    <div class="sidebar" id="ab">
+        <div class="logo"></div>
+        <u1 class="menu">
+          <li class="active">
+            <a href="#">
+              <i class="fas fa-tachometer-alt"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+         
+          <li>
+            <a href="#">
+              <i class="fas fa-chart-bar"></i>
+              <span>Status Check</span>
+            </a>
+          </li>
+          
+          <li class="logout" style="position: relative; top: 25rem;">
+            <a href="#">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </u1>
+      </div>
+
+    <div class="main--content">
+
+        <h3 style="font-size: 35px; background: rgb(255, 0, 72); width: 50vw; position: relative; left: 19rem; padding-left: 4rem; padding-top: 7px; height: 4rem; border-radius: 15px; ">  IPAS COMPLAINT MANAGEMENT SYSTEM</h3>
+
+        <div class="header--wrapper" style="position: relative; top: 1rem; border-radius: 30px; height: 10vh; background: gray;">
+            <div class="header--title">
+                <i class="fa-sharp fa-solid fa-greater-than" style="font-size: x-large; position: relative; top: 0.90rem;"></i>
+                <h2 style="position: relative; bottom: 1.2rem; left:1.5rem;">Dashboard </h2>
+
+                <i class="fa-sharp fa-solid fa-greater-than" style="font-size: x-large; position: relative; bottom: 3.1rem; left: 11rem;"></i>
+
+                <h2 style="position: relative; bottom: 5.2rem; left:12.8rem;">Review </h2>
+
+
+            </div>
+
+            <img src="https://source.unsplash.com/160x160/?human" alt="" />
+        </div>
+
+
+
+
+        <div class="container" style="max-width: 60vw; position: relative; top: 1rem;">
+            <h1 style="position: relative; bottom: 0.5rem; font-size: x-large;">User Complaints</h1>
+            <div class="subheadings">
+                <div class="subheading" style="position: relative; right: 0.5rem; top: 0.1rem;">Com.ID</div>
+                <div class="sidbox" style=" width: 200px;
+              border: 2px solid green;
+              border-radius: 5%; position: relative; right: 1.5rem;
+              
+              ">
+               <div class="subheading" id="complaint"></div>
+              </div>
+              <div class="subheading" style="position: relative; right: 0.5rem; top: 0.1rem;">Division</div>
+              <div class="sidbox" style=" width: 200px;
+              border: 2px solid green;
+              border-radius: 5%; position: relative; right: 1.5rem;
+              
+              ">
+              <div class="subheading" id="division"></div>
+              </div>
+
+                <div class="subheading" style="position: relative; right: 0.5rem; top: 0.1rem;">Section</div>
+                <div class="sidbox" style=" width: 200px;
+                border: 2px solid green;
+                border-radius: 5%; position: relative; right: 0.5rem; top: 0.1rem;
+                
+                ">
+                 <div class="subheading" id="section"></div>
+                </div>
+                
+            </div>
+
+            <div class="form-container">
+                <h3>Complaint Description</h3>
+                <div class="dialogue-box">
+                  <div class="subheading" id="complaint_desc"></div>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <h3>Remarks from Admin</h3>
+                <div class="dialogue-box">
+                  <div class="subheading" id="complaint_remark_to_dealer"></div>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <h3>Remarks To Admin</h3>
+                <div class="dialogue-box">
+                    <textarea class="form-input" rows="4" placeholder="Enter remarks to admin"></textarea>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <button class="form-submit">Forward To Admin</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+    <script>
+      const allDropdown = document.querySelectorAll('.sidebar .side-dropdown');
+
+allDropdown.forEach(item=> {
+    const a = item.parentElement.querySelector('a:first-child');
+    a.addEventListener('click',function(e){
+        e.preventDefault();
+
+        
+        this.classList.toggle('active');
+        item.classList.toggle('show');
+
+    });
+});
+fetch('/getComplaint')
+      .then(response => response.json())
+      .then(data => {
+        // Process the received data
+        console.log(data);
+        document.getElementById('complaint').innerText = JSON.stringify(data[0].complaint_id);
+        document.getElementById('division').innerText = JSON.stringify(data[0].complaint_division);
+        document.getElementById('section').innerText = JSON.stringify(data[0].complaint_section);
+        document.getElementById('complaint_desc').innerText = JSON.stringify(data[0].complaint_desc);
+        document.getElementById('complaint_remark_to_dealer').innerText = JSON.stringify(data[0].complaint_remark_to_dealer);
+      })
+      .catch(error => console.log(error));
+
+
+
+    </script>
+</body>
+
+</html>

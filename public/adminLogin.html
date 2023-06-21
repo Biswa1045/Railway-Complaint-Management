@@ -63,7 +63,7 @@
 
             <div class="input-box">
                 <span class="icon"><i class="bx bxs-envelope"></i> </span>
-                <input type="email" required id="phone_admin_signin" name="phone_admin_signin"/>
+                <input type="number" required id="phone_admin_signin" name="phone_admin_signin"/>
                 <label>ID</label>
               </div>
 
@@ -117,9 +117,8 @@
             // },
             body: formDataSignin,
           });
-          if (res.ok) {
-         //  const user = res.json();
-            alert("Admin login successful!");
+          if (res.redirected) {
+            window.location = res.url;
           } else {
             const err = res.json();
             alert(err.description);

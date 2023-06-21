@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dealer_1</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="dealerdashboardcss.css" />
+  </head>
+  <body>
+    <div class="sidebar" id="ab">
+      <div class="logo"></div>
+      <u1 class="menu">
+        <li class="active">
+          <a href="#">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+       
+        <li>
+          <a href="#">
+            <i class="fas fa-chart-bar"></i>
+            <span>Status Check</span>
+          </a>
+        </li>
+        
+        <li class="logout" style="position: relative; top: 25rem;">
+          <a href="#">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+          </a>
+        </li>
+      </u1>
+    </div>
+
+    <div class="main--content">
+      <h3 style="font-size: 35px; background: rgb(255, 0, 72); width: 50vw; position: relative; left: 19rem; padding-left: 4rem; padding-top: 7px; height: 4rem; border-radius: 15px; ">  IPAS COMPLAINT MANAGEMENT SYSTEM</h3>
+      <div class="header--wrapper" style="position: relative; top: 1rem; border-radius: 30px; height: 10vh; background: gray;">
+        <div class="header--title">
+          <i class="fa-sharp fa-solid fa-greater-than" style="font-size: x-large; position: relative; top: 0.90rem;"></i>
+          <h2 style="position: relative; bottom: 1.2rem; left: 30px;">Dashboard </h2>
+      </div>
+      
+
+        <img  style="position: relative; left: 72rem; bottom: 0.4rem;" src="https://source.unsplash.com/160x160/?human" alt="" />
+      </div>
+<title>Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .container {
+      max-width: 1000px;
+      
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: relative;
+      top: 1rem;
+    }
+    
+    h1 {
+      text-align: left;
+      margin-top: 10;
+      text-align:left;
+      position: relative;
+      bottom: 1rem;
+
+    }
+    
+    .subheadings {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      margin-left: 20px;
+    }
+    
+    .subheading {
+      flex: 1;
+      margin-left: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      position: relative;
+      /* position: static; */
+      top: 1rem;
+    }
+
+    
+    .table-container {
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      position: relative;
+      top: 2rem;
+      
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      
+      
+    }
+    
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      /* position: relative;
+      top: 3.5rem; */
+      
+    }
+    
+    .form-container {
+      background-color: #f2f2f2;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    
+    .form-submit {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .form-submit:hover {
+      background-color: #45a049;
+    }
+    
+    .dialogue-box {
+      background-color: #f2f2f2;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    
+    .review-button {
+      background-color: #34db63;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .review-button:hover {
+      background-color: #29b948;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" style="max-width: 85vw; max-height: 45vh;">
+    <h1>Complaints</h1>
+    <div class="subheadings " style="position: relative;">
+      <div class="subheading" style="position: relative; right: 1.6rem; top: 2rem;">SI No.</div>
+      <div class="subheading" style="position: relative; right: 8.6rem; top: 2rem;">Com. ID</div>
+      <div class="subheading" style="position: relative; right: 12rem; top: 2rem;">Division</div>
+      <div class="subheading" style="position: relative; right: 12.5rem; top: 2rem;">Section</div>
+      <div class="subheading" style="position: relative; right: 9rem; top: 2rem;">Complaint Desc.</div>
+      <div class="subheading" style="position: relative; right: 1.2rem; top: 2rem;">Admin Remarks </div>
+      <div class="subheading" style="position: relative; left: 3rem; top: 2rem;">Process</div>
+    </div>
+    
+    <div class="table-container">
+      <table>
+        <tbody id="ComplaintTable">
+
+        </tbody>
+        <!-- Add more rows here -->
+      </table>
+    </div>
+    
+    
+    
+    
+  </div>
+      
+
+    <!-- </div> -->
+
+    <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+    <script >
+      const allDropdown = document.querySelectorAll('.sidebar .side-dropdown');
+
+allDropdown.forEach(item=> {
+    const a = item.parentElement.querySelector('a:first-child');
+    a.addEventListener('click',function(e){
+        e.preventDefault();
+
+        
+        this.classList.toggle('active');
+        item.classList.toggle('show');
+
+    });
+});
+
+
+      fetch('/getDealerComplaintList')
+      .then(response => response.json())
+      .then(data => {
+        buildTabledealer(data);
+        // Process the received data
+     //   document.getElementById('complaint').innerText = JSON.stringify(data[0].complaint_id);
+      })
+      .catch(error => console.log(error));
+
+        function buildTabledealer(data){
+          var table = document.getElementById('ComplaintTable');
+for (var i = 0; i < data.length; i++) {
+  var row = "<tr>" +
+    "<td>" + (i+1) + "</td>" +
+    "<td>" + data[i].complaint_id + "</td>" +
+    "<td>" + data[i].complaint_division + "</td>" +
+    "<td>" + data[i].complaint_section + "</td>" +
+    "<td>" + data[i].complaint_desc.substring(0, 50) + "</td>" +
+    "<td>" + data[i].complaint_remark_to_dealer.substring(0, 50) + "</td>" +
+     
+    "</tr>";
+  table.innerHTML += row;
+}
+        }
+    </script>
+  </body>
+</html>
