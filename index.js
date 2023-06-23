@@ -227,12 +227,13 @@ async function complaintCount(){
 app.post("/registerComplaint", multer().none(), async function (request, res) {
   try {
    // const complaint_userid = USERID;
-   var complaint_userid = " ";
+
     var comcount = await complaintCount();
   
     const complaint_id ="COM00"+comcount;
     let name_complaint = request.body["name_complaint"];
     let phone_complaint = request.body["phone_complaint"];
+    var complaint_userid =  request.body["userid"];
     let division = request.body["division"];
     let section = request.body["section"];
     let complaint_description = request.body["complaint_description"];
@@ -369,6 +370,27 @@ app.get("/getDealerComplaintList", multer().none(), async function (req, res) {
     var [complaint]=await sql4.query(querycom,[complaintPosition, compliantStatus]);
     await sql4.end();
     console.log(complaint);
+  //  res.render('admindashboard', { complaints: complaint });
+    return res.status(201).json(complaint);
+   
+  } catch (error) {
+    console.log(chalk.redBright(error));
+    // defaults to 500, you can process 'error' for more detailed error response
+    return res.status(500).json({
+      error: "server_error",
+      description: "unknown error occured when processing the request",
+    });
+  }
+});
+
+app.get("/userid", multer().none(), async function (req, res) {
+  try {
+    
+    const sql4 = await new AsyncSQL();
+    const querycom = 'SELECT USER_ID FROM section_waise_userid';
+    var [complaint]=await sql4.query(querycom);
+    await sql4.end();
+   // console.log(complaint);
   //  res.render('admindashboard', { complaints: complaint });
     return res.status(201).json(complaint);
    

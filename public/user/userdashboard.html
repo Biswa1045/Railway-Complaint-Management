@@ -70,7 +70,7 @@
                 
             </div>
             
-            <img src="https://source.unsplash.com/160x160/?human" style="position: relative; right: 50rem;" alt=""/>
+            <!-- <img src="https://source.unsplash.com/160x160/?human" style="position: relative; right: 50rem;" alt=""/> -->
 
 
             <form style="max-width: 80%; position: relative; left: 8rem;" action="#" id="Complaintform" >
@@ -83,7 +83,7 @@
                 
                 <div class="formgroup">
                   <label style="position: relative; padding-left: 40rem; bottom: 5rem;"  for="phone">Phone Number: </label>
-                  <input style="width: 20vw; position: relative; left: 48.5rem; bottom: 6.6rem; border: 2px solid black;" type="text" id="phone_complaint" name="phone_complaint" required>
+                  <input style="width: 20vw; position: relative; left: 48.5rem; bottom: 6.6rem; border: 2px solid black;" type="text"  maxlength="10" id="phone_complaint" name="phone_complaint" required>
                 </div>
 
 
@@ -92,7 +92,7 @@
 
                 <div class="formgroupoption" style="position: relative; padding-left: 4rem; bottom: 8.4rem;">
                     <label for="section" style="position: relative; top: 2rem; right: 2rem;">Division: </label>
-                      <select style="width: 20vw; height: 34px; border: 2px solid black; position: relative; left: -0.6rem; top: 2rem; margin-top: 30px; " name="division" id="division">
+                      <select style="width: 20vw; height: 34px; border: 2px solid black; position: relative; left: -0.6rem; top: 2rem; margin-top: 30px; " name="division" id="division" required>
                         <option value="3101-BHUBANESWAR">3101-BHUBANESWAR</option>
                         <option value="3102-KHURDA ROAD">3102-KHURDA ROAD</option>
                         <option value="3103-SAMBALPUR">3103-SAMBALPUR</option>
@@ -113,7 +113,7 @@
                 
                 <div class="formgroupoption" style="position: relative; padding-left: 40rem; bottom: 8.4rem;">
                   <label for="section" style="position: relative; bottom: 1.5rem;">Section: </label>
-                    <select style="width: 20vw; height: 34px; border: 2px solid black; position: relative; left: 4.3rem; bottom: 30px;" name="section" id="section">
+                    <select style="width: 20vw; height: 34px; border: 2px solid black; position: relative; left: 4.3rem; bottom: 30px;" name="section" id="section" required>
                       <option value="Expenditure-I">Expenditure-I</option>
                       <option value="Expenditure-II">Expenditure-II</option>
                       <option value="Stores Bill - Stock">Stores Bill - Stock</option>
@@ -138,10 +138,18 @@
 
                     </select>
                 </div>
+
+                <div class="formgroupoption" style="position: relative; padding-left: 4rem; bottom: 10rem;">
+                  <label for="section" style="position: relative; top: 2rem; right: 2rem;">UseId: </label>
+                    <select style="width: 20vw; height: 34px; border: 2px solid black; position: relative; left: -0.6rem; top: 2rem; margin-top: 30px; " name="userid" id="userid" required>
+                     
+
+                    </select>
+                </div>
         
                 <div class="formgroup" style="position: relative; bottom: 6rem;">
                   <label style="position: relative; left: 2.1rem;" for="description">Complaint Description</label>
-                  <textarea name="complaint_description" id="complaint_description" cols="30" rows="10" required></textarea>
+                  <textarea name="complaint_description" id="complaint_description" cols="30" rows="10" maxlength="100" required></textarea>
                 </div>
 
 
@@ -170,6 +178,25 @@ allDropdown.forEach(item=> {
     })
 });
 
+fetch('/userid')
+      .then(response => response.json())
+      .then(data => {
+        const dropdown = document.getElementById('userid');
+ 
+        data.forEach(item => {
+      const option = document.createElement('option');
+      option.value = item.USER_ID;
+      option.textContent = item.USER_ID;
+      dropdown.appendChild(option);
+    });
+      })
+      .catch(error => console.log(error));
+
+        window.addEventListener('popstate', function (event) {
+ 
+ // history.pushState(null, null, window.location.href);
+});
+
         document
         .getElementById("Complaintform")
         .addEventListener("submit", async (e) => {
@@ -193,19 +220,7 @@ allDropdown.forEach(item=> {
           }
         });
 
-        window.addEventListener('popstate', function (event) {
- 
- // history.pushState(null, null, window.location.href);
-});
-
-
-
-
-
-
-
-
-
+      
 
     </script> 
 
