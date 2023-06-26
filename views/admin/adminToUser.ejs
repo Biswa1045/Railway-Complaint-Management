@@ -107,14 +107,16 @@
             class="sidbox"
             style="width: 200px; border: 2px solid black; border-radius: 5%"
           >
-            <div class="subheading" id="complaint"></div>
+            <div class="subheading" id="complaint"><%= complaint.id %></div>
           </div>
           <div class="subheading">Division</div>
           <div
             class="sidbox"
             style="width: 200px; border: 2px solid black; border-radius: 5%"
           >
-            <div class="subheading" id="division"></div>
+            <div class="subheading" id="division">
+              <%= complaint.division %>
+            </div>
           </div>
           <div class="subheading">Section</div>
           <div
@@ -128,14 +130,18 @@
         <div class="form-container">
           <h3>Complaint Description</h3>
           <div class="dialogue-box">
-            <div class="subheading" id="complaint_desc"></div>
+            <div class="subheading" id="complaint_desc">
+              <%= complaint.description %>
+            </div>
           </div>
         </div>
 
         <div class="form-container">
           <h3>Remarks from Dealer</h3>
           <div class="dialogue-box">
-            <div class="subheading" id="complaint_dealer_remark"></div>
+            <div class="subheading" id="complaint_dealer_remark">
+              <%= complaint.remarks %>
+            </div>
           </div>
         </div>
 
