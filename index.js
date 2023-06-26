@@ -7,20 +7,27 @@ if (ENV().NODE_ENV !== "production")
   require("dotenv").config({ path: path.join(__dirname, ".env.local") });
 
 // external package imports
-const bcrypt = require("bcrypt");
 const chalk = require("chalk");
 const express = require("express");
+const session = require("express-session");
 
 // library imports
 const AsyncSQL = require("./lib/AsyncSQL");
 const multer = require("multer");
-const { LocalStorage } = require("node-localstorage");
 
 const app = express();
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(
+  session({
+    secret: "your_super_secret_key", // probably store it as an env variable
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false }, // set true if HTTPS is enabled
+  })
+);
 
 // serve static files from the public folder
 app.use(express.static(path.join(process.cwd(), "public")));
@@ -107,11 +114,8 @@ app.post("/signinuser", multer().none(), async function (request, response) {
       });
     } else {
       // use express-session or something similar to persist the session
+      req.session.user = results[0];
 
-      const user = results[0];
-      //  USERID = user.userid;
-      // storage(user.user_id);
-      console.log("User data:", user.user_id);
       return response.redirect("/user/userdashboard.html");
     }
   } catch (error) {
@@ -287,6 +291,64 @@ app.post("/checkstatus", multer().none(), async function (req, res) {
   try {
     // status code 201: created successfully
     return res.sendStatus(201);
+  } catch (error) {
+    console.log(chalk.redBright(error));
+    // defaults to 500, you can process 'error' for more detailed error response
+    return res.status(500).json({
+      error: "server_error",
+      description: "unknown error occured when processing the request",
+    });
+  }
+});
+
+app.get("/userDashboard", async function (req, res) {
+  try {
+    if (!req.session.user) {
+      return res.redirect("/userlogin.html");
+    }
+
+    res.send(
+      "Create userDashboard.ejs under views folder to render the page\nFollow the adminToUser route as example\nUser name: " +
+        req.session.user.name
+    );
+  } catch (error) {
+    console.log(chalk.redBright(error));
+    // defaults to 500, you can process 'error' for more detailed error response
+    return res.status(500).json({
+      error: "server_error",
+      description: "unknown error occured when processing the request",
+    });
+  }
+});
+
+app.get("/admin/adminToDealer", multer().none(), async function (req, res) {
+  const { complaintId } = req.query;
+
+  try {
+    // status code 201: created successfully
+    // const sql = await new AsyncSQL();
+    // const querystring =
+    //   "SELECT * complaint_table SET complaint_position = 'dealer' WHERE complaint_id = ?";
+    // const [results] = await sql.query(querystring, [complaintId]);
+    // await sql.end();
+
+    // for simplicity, we'll just render a dummy complaint object
+    const results = [
+      {
+        complaint_id: "COM001",
+        complaint_division: "division",
+        complaint_section: "section",
+        complaint_desc: "description",
+        complaint_status: "status",
+        complaint_position: "position",
+        complaint_userid: "userid",
+        complaint_admin_remark: "admin_remark",
+        complaint_dealer_remark: "dealer_remark",
+        complaint_remark_to_dealer: "remark_to_dealer",
+      },
+    ]; // dummy data craeted by copilot
+
+    return res.render("admin/adminToDealer", { complaint: results[0] });
   } catch (error) {
     console.log(chalk.redBright(error));
     // defaults to 500, you can process 'error' for more detailed error response
