@@ -13,47 +13,33 @@
   </head>
   <body>
     <header class="header">
-      <p1 style="color: aqua; font-size: 50px">Complaint Management System</p1>
-      <nav class="navbar">
-      
-
-        <a href="userLogin.html" style="font-size: x-large ;">User</a>
+      <p1 style="color: black; font-size: 30px; font-weight: 35px;  position: relative; left: 12rem; top: 1.1rem;">Complaint Management System</p1>
+      <nav class="navbar" style="position: relative; right: 5rem; top: 1.2rem;">
+        <button  class="button-29" role="button" id="checkStatus">Check Status</button>
+        <a  href="userLogin.html" style="font-size: x-large; left: 0.5rem;">User</a>
         <a href="adminLogin.html" style="font-size: x-large ;" >Admin</a>
         <a href="dealerLogin.html" style="font-size: x-large ;" >Dealer</a>
-        <!-- <a href="#">Contact Us</a> -->
+      
       </nav>
 
-      <!-- <form action="#" class="search-bar">
-        <input type="text" placeholder="search...." />
-        <button type="submit"><i class="bx bx-search"></i></button>
-      </form> -->
     </header>
 
     <div class="background"></div>
+
+
+    <img src="india_logo.png" style="position: relative; bottom: 38.5rem; left: 1.2rem;">
+
+    
+
+
+    <img src="satya.png" style="position: relative; bottom: 39rem; left: 72rem; height: 85px;">
+    <img src="gt.png" style="position: relative; left: 58rem; bottom: 39rem; width: 150px;">
+
+
+
     <div class="container">
       <div class="content">
-        <h2 class="logo"><i class="bx bxl-firebase"></i>Sid</h2>
 
-        <div class="text-sci">
-          <h2>
-            Welcome! <br />
-            <span>To Our Helping Desk</span>
-          </h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor
-            accusantium non provident animi ex consequatur adipisci dolores
-            labore praesentium aspernatur natus, quidem distinctio soluta ea
-            quis sapiente veritatis optio porro fuga a.
-          </p>
-
-          <div class="social-icons">
-            <a href="#"><i class="bx bxl-linkedin"></i></a>
-            <a href="#"><i class="bx bxl-facebook"></i></a>
-            <a href="#"><i class="bx bxl-instagram-alt"></i></a>
-            <a href="#"><i class="bx bxl-twitter"></i></a>
-            <a href="#"><i class="bx bxl-github"></i></a>
-          </div>
-        </div>
       </div>
 
       <div class="loreg-box">
@@ -98,34 +84,53 @@
           </form>
         </div>
        
+        
+
+
 
       </div>
     </div>
 
-     <script >
- //login
-         document
-        .getElementById("signinformDealer")
-        .addEventListener("submit", async (e) => {
+    <script >
+      //login
+              document
+             .getElementById("signinformDealer")
+             .addEventListener("submit", async (e) => {
+               e.preventDefault();
+               const formDataSignin = new FormData(e.target);
+               const res = await fetch("/signindealer", {
+                 method: "POST",
+                 // headers: {
+                 //   "Content-Type": "multipart/form-data",
+                 // },
+                 body: formDataSignin,
+               });
+               if (res.redirected) {
+              //  const user = res.json();
+                // alert("Dealer login successful!");
+                window.location = res.url;
+               } else {
+                 const err = res.json();
+                 alert(err.description);
+               }
+             });
+             document
+        .getElementById("checkStatus")
+        .addEventListener("click", async (e) => {
           e.preventDefault();
-          const formDataSignin = new FormData(e.target);
-          const res = await fetch("/signindealer", {
+          
+          const res = await fetch("/redirectToStatuscheck", {
             method: "POST",
-            // headers: {
-            //   "Content-Type": "multipart/form-data",
-            // },
-            body: formDataSignin,
+            body: "formData",
           });
-          if (res.redirected) {
-         //  const user = res.json();
-           // alert("Dealer login successful!");
-           window.location = res.url;
-          } else {
-            const err = res.json();
-            alert(err.description);
-          }
-        });
 
-     </script> 
+          if (res.redirected) {
+                 window.location = res.url;
+               } else {
+                 const err = res.json();
+                 alert(err.description);
+               }
+        });
+          </script> 
   </body>
 </html>

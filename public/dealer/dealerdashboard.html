@@ -28,7 +28,7 @@
         <li>
           <a href="#">
             <i class="fas fa-chart-bar"></i>
-            <span>Status Check</span>
+            <span id="statusCheck" >Status Check</span>
           </a>
         </li>
         
@@ -50,7 +50,7 @@
       </div>
       
 
-        <img  style="position: relative; left: 72rem; bottom: 0.4rem;" src="https://source.unsplash.com/160x160/?human" alt="" />
+      
       </div>
 <title>Dashboard</title>
   <style>
@@ -239,6 +239,27 @@ allDropdown.forEach(item=> {
 
     });
 });
+
+
+        document
+        .getElementById("statusCheck")
+        .addEventListener("click", async (e) => {
+          e.preventDefault();
+          
+          const res = await fetch("/redirectToStatuscheck", {
+            method: "POST",
+            body: "formData",
+          });
+
+          if (res.redirected) {
+                 window.location = res.url;
+               } else {
+                 const err = res.json();
+                 alert(err.description);
+               }
+        });
+
+
 
 
       fetch('/getDealerComplaintList')

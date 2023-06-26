@@ -19,21 +19,10 @@
             <li  style="position: relative; top: 2rem;">
                 <a href="#">
                     <i class="fas fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
+                    <span id="home" >Home</span>
                 </a>
             </li>
-            <li  style="position: relative; top: 2rem;">
-                <a href="#">
-                    <i class="fas fa-user"></i>
-                    <span>Profile</span>
-                </a>
-
-                <ul class="side-dropdown" >
-                    <img src="key.png"  alt="" srcset="" style="width: 20px; height: 20px; position: relative; top: 3.7rem; border-radius: 50%;">
-                    <li><a style="position: relative; left: 15px;" href="#">Change Password</a></li>
-                </ul>
-
-            </li>
+            
             <li class="active"  style="position: relative; top: 2rem;">
                 <a href="#">
                     <i class="fas fa-chart-bar"></i>
@@ -41,12 +30,7 @@
                 </a>
             </li>
            
-            <li class="logout" style="position: relative; top: 20rem;">
-                <a href="#">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Logout</span>
-                </a>
-            </li>
+           
         </u1>
 
     </div>
@@ -57,27 +41,20 @@
 
 
 
-        <div class="header--wrapper" style="position: relative; top: 1rem; border-radius: 30px; height: 70vh; background:  rgb(137, 94, 178);">
+        <div class="header--wrapper" style="position: relative; top: 1rem; height: 70vh; background: white;">
 
 
-            <div class="header--title">
-              <i class="fa-sharp fa-solid fa-greater-than" style="font-size: x-large; position: relative; bottom: 10.7rem;"></i>
-                <h2 style="position: relative; bottom: 13rem; left: 30px; font-weight: bolder; font-size: 30px;">Status </h2>
-            </div>
-            
-            <img src="https://source.unsplash.com/160x160/?Chocolate" style="position: relative; bottom: 12.5rem; left: 73.5rem" alt=""/>
-
-
+           
 
 
 
             <div class="header0">
-              <h1 style="position: relative; right: 2.5rem; bottom: 5rem;">Complaint Id</h1>
+              <h2 style="position: relative; left: 13rem; bottom: 4.6rem;">Complaint Id</h2>
               <div class="complaint-form">
-                <form action="process-complaint.php" action="#" id="complaintBox">
+                <form  action="#" id="complaintBox">
           
-                  <input style="position: relative; bottom: 6rem;" type="text" id="complaint_box" name="complaint_box-id" placeholder="Enter Complaint ID" required>
-                  <input  style="position: relative; left: 26rem; bottom: 9rem;" type="submit" value="Check Status">
+                  <input style="position: relative; bottom: 6rem; left: 14rem; " type="text" id="complaint_id" name="complaint_id" placeholder="Enter Complaint ID" required>
+                  <input  style="position: relative; left: 40rem; bottom: 9rem;" type="submit" value="Check Status">
                 </form>
               </div>
           
@@ -85,22 +62,16 @@
 
 
             </div>
-
-
-            
           
-           
-          
-          
-            <div class="dealer" style="position: relative; bottom: 15rem; left: 1rem;">
+            <div class="dealer" style="position: relative; bottom: 18rem; left: 1rem;">
               <div class="header1">
-                <h1 style="position: relative; bottom: 1rem;">Your Complaints</h1>
+                <h1 style="position: relative; bottom: 1rem;">Your Complaint</h1>
               </div>
           
               <table>
                 <thead>
                   <tr style=" position: relative; right: 16px;">
-                    <th>SL.No</th>
+                    
                     <th>Com.ID</th>
                     <th>Division</th>
                     <th>Section</th>
@@ -109,31 +80,11 @@
                     <th>Admin Remarks</th>
                     <th>Dealer Remarks</th>
                   </tr>
+                  <tbody id="complaint_table">
+
+                  </tbody>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td >1</td>
-                    <td>123</td>
-                    <td>Division A</td>
-                    <td>Section 1</td>
-                    <td>Complaint 1</td>
-                    <td style="position: relative; right: 9px;">Pending</td>
-          
-                  </tr>
-                  <tr style=" position: relative; right: 3px; background-color: transparent; ">
-                    <td>2</td>
-                    <td>456</td>
-                    <td>Division B</td>
-                    <td>Section 2</td>
-                    <td>Complaint 2</td>
-                    <td>closed</td>
-                    <td>that's a good bug</td>
-                    <td>that's a good bug</td>
-          
-                  </tr>
-          
-                  <!-- Add more rows as needed -->
-                </tbody>
+               
               </table>
             </div>
 
@@ -158,38 +109,61 @@ allDropdown.forEach(item=> {
         this.classList.toggle('active');
         item.classList.toggle('show');
 
-    })
+    });
 });
 
+document
+  .getElementById("complaintBox")
+  .addEventListener("submit", async (e) => {
+    e.preventDefault();
+ 
+    var complaint = document.getElementById("complaint_id").value;
+    var complaint_str =  "checkstatus/"+complaint;
+    console.log(complaint_str);
+    fetch(complaint_str
+    )
+      .then(response => response.json())
+      .then(data => {
+        buildTable(data);
+        // Process the received data
+     //   document.getElementById('complaint').innerText = JSON.stringify(data[0].complaint_id);
+      })
+      .catch(error => console.log(error));
+  });
+
+        function buildTable(data){
+          var table = document.getElementById('complaint_table');
+          var id = table.value;
+for (var i = 0; i < data.length; i++) {
+  var row = "<tr>" +
+    "<td>" + data[i].complaint_id + "</td>" +
+    "<td>" + data[i].complaint_division + "</td>" +
+    "<td>" + data[i].complaint_section + "</td>" +
+    "<td>" + data[i].complaint_desc.substring(0, 50) + "</td>" +
+    "<td>" + data[i].complaint_status + "</td>" +
+    "<td>" + data[i].complaint_admin_remark + "</td>" +
+    "<td>" + data[i].complaint_dealer_remark + "</td>" +
+    "</tr>";
+  table.innerHTML += row;
+}
+        }
         document
-        .getElementById("complaintBox")
-        .addEventListener("submit", async (e) => {
+        .getElementById("home")
+        .addEventListener("click", async (e) => {
           e.preventDefault();
-          const formDataSignin = new FormData(e.target);
-          const res = await fetch("/checkstatus", {
-            method: "GET",
-            // headers: {
-            //   "Content-Type": "multipart/form-data",
-            // },
-            body: formDataSignin,
+          
+          const res = await fetch("/redirectToHome", {
+            method: "POST",
+            body: "formData",
           });
-          if (res.ok) {
-         //  const user = res.json();
-          //  alert("User login successful!");
-            // goto home page
-          } else {
-            const err = res.json();
-            alert(err.description);
-          }
+
+          if (res.redirected) {
+                 window.location = res.url;
+               } else {
+                 const err = res.json();
+                 alert(err.description);
+               }
         });
-
-
-
-
-
-
-
-
 
     </script> 
 

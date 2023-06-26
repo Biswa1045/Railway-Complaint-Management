@@ -28,7 +28,7 @@
         <li>
           <a href="#">
             <i class="fas fa-chart-bar"></i>
-            <span id="statuscheck()">Status Check</span>
+            <span id="statuscheck">Status Check</span>
           </a>
         </li>
         
@@ -97,20 +97,7 @@
       </thead>
       </table>
        
-    
-
-
-
-
-
       </div>
-
-
-
-
-
-
-
 
     </div>
 
@@ -132,6 +119,26 @@ allDropdown.forEach(item=> {
 
     });
 });
+
+document
+        .getElementById("statusCheck")
+        .addEventListener("click", async (e) => {
+          e.preventDefault();
+          
+          const res = await fetch("/redirectToStatuscheck", {
+            method: "POST",
+            body: "formData",
+          });
+
+          if (res.redirected) {
+                 window.location = res.url;
+               } else {
+                 const err = res.json();
+                 alert(err.description);
+               }
+        });
+
+
 fetch('/getUserComplaintList')
       .then(response => response.json())
       .then(data => {
@@ -140,6 +147,8 @@ fetch('/getUserComplaintList')
      //   document.getElementById('complaint').innerText = JSON.stringify(data[0].complaint_id);
       })
       .catch(error => console.log(error));
+
+      
       fetch('/getDealerResolvedComplaintList')
       .then(response => response.json())
       .then(data => {
@@ -176,9 +185,7 @@ for (var i = 0; i < data.length; i++) {
   table.innerHTML += row;
 }
         }
-function statuscheck(){
 
-}
     </script>
   </body>
 </html>

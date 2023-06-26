@@ -10,19 +10,27 @@ if (ENV().NODE_ENV !== "production")
 const bcrypt = require("bcrypt");
 const chalk = require("chalk");
 const express = require("express");
+const session = require("express-session");
 
 // library imports
 const AsyncSQL = require("./lib/AsyncSQL");
 const multer = require("multer");
-const { LocalStorage } = require("node-localstorage");
+//const { LocalStorage } = require("node-localstorage");
 
 const app = express();
+app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(
+  session({
+    secret: "your_super_secret_key", // probably store it as an env variable
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false }, // set true if HTTPS is enabled
+  })
+);
 
 // serve static files from the public folder
 app.use(express.static(path.join(process.cwd(), "public")));
-
 const registerUserFields = [
   // "id", // id seems to be preset, uncomment to include in validation
   "username",
@@ -81,7 +89,7 @@ app.post("/registeruser", multer().none(), async function (req, res) {
     });
   }
 });
-//var USERID;
+
 app.post('/signinuser', multer().none(), async function(request, response) {
 	// Capture the input fields
 	let useremail = request.body["phone_signin"];
@@ -280,10 +288,19 @@ app.post("/registerComplaint", multer().none(), async function (request, res) {
   }
 });
 
-app.post("/checkstatus", multer().none(), async function (req, res) {
+app.get("/checkstatus/:complaintID", async function (req, res) {
   try {
-    // status code 201: created successfully
-    return res.sendStatus(201);
+   
+  const complaintID = req.params.complaintID;
+  console.log(complaintID);
+   // var complaintId = "COM001"
+    const sql5 = await new AsyncSQL();
+    const querycom = 'SELECT * FROM complaint_table WHERE complaint_id = ?';
+    var [list]=await sql5.query(querycom,[complaintID]);
+    await sql5.end();
+    console.log(complaintID);
+    return res.status(201).json(list);
+   
   } catch (error) {
     console.log(chalk.redBright(error));
     // defaults to 500, you can process 'error' for more detailed error response
@@ -402,6 +419,16 @@ app.get("/userid", multer().none(), async function (req, res) {
       description: "unknown error occured when processing the request",
     });
   }
+});
+
+app.post('/redirectToStatuscheck', function(req, res) {
+  
+  res.redirect('../statuscheck.html');
+});
+
+app.post('/redirectToHome', function(req, res) {
+  
+  res.redirect('../userLogin.html');
 });
 
 const PORT = ENV().PORT || 3000;

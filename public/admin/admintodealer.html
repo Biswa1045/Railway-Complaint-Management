@@ -110,13 +110,13 @@
           <span>Dashboard</span>
         </a>
       </li>
-     
       <li>
         <a href="#">
           <i class="fas fa-chart-bar"></i>
-          <span>Status Check</span>
+          <span id="statuscheck">Status Check</span>
         </a>
       </li>
+     
       
       <li class="logout" style="position: relative; top: 25rem;">
         <a href="#">
@@ -226,7 +226,7 @@
     const allDropdown = document.querySelectorAll('.sidebar .side-dropdown');
 
 allDropdown.forEach(item=> {
-    const a = item.parentElement.querySelector('a:first-child');
+    const a = item.parentElement.querySelector('a:first-child'); 
     a.addEventListener('click',function(e){
         e.preventDefault();
 
@@ -237,7 +237,16 @@ allDropdown.forEach(item=> {
     });
 });
 
-       
+document
+        .getElementById("statusCheck")
+        .addEventListener("click", async (e) => {
+          e.preventDefault();
+          
+          const res = await fetch("/redirectToStatuscheck", {
+            method: "POST",
+            body: "formData",
+          });
+        });
 fetch('/getComplaint')
       .then(response => response.json())
       .then(data => {
