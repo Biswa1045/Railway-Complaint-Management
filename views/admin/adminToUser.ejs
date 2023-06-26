@@ -107,35 +107,45 @@
             class="sidbox"
             style="width: 200px; border: 2px solid black; border-radius: 5%"
           >
-            <div class="subheading" id="complaint"></div>
+            <div class="subheading" id="complaint">
+              <%= complaint.complaint_id %>
+            </div>
           </div>
           <div class="subheading">Division</div>
           <div
             class="sidbox"
             style="width: 200px; border: 2px solid black; border-radius: 5%"
           >
-            <div class="subheading" id="division"></div>
+            <div class="subheading" id="division">
+              <%= complaint.complaint_division %>
+            </div>
           </div>
           <div class="subheading">Section</div>
           <div
             class="sidbox"
             style="width: 200px; border: 2px solid black; border-radius: 5%"
           >
-            <div class="subheading" id="section"></div>
+            <div class="subheading" id="section">
+              <%= complaint.complaint_section %>
+            </div>
           </div>
         </div>
 
         <div class="form-container">
           <h3>Complaint Description</h3>
           <div class="dialogue-box">
-            <div class="subheading" id="complaint_desc"></div>
+            <div class="subheading" id="complaint_desc">
+              <%= complaint.complaint_desc %>
+            </div>
           </div>
         </div>
 
         <div class="form-container">
           <h3>Remarks from Dealer</h3>
           <div class="dialogue-box">
-            <div class="subheading" id="complaint_dealer_remark"></div>
+            <div class="subheading" id="complaint_dealer_remark">
+              <%= complaint.complaint_dealer_remark %>
+            </div>
           </div>
         </div>
 
@@ -146,7 +156,8 @@
               class="form-input"
               rows="4"
               placeholder="Enter remarks to User"
-            ></textarea>
+            >
+            </textarea>
           </div>
         </div>
 
