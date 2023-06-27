@@ -110,12 +110,12 @@
           <span>Dashboard</span>
         </a>
       </li>
-      <li>
+      <!-- <li>
         <a href="#">
           <i class="fas fa-chart-bar"></i>
-          <span id="statuscheck">Status Check</span>
+          <span id="statuscheck" onclick="red()" >Status Check</span>
         </a>
-      </li>
+      </li> -->
      
       
       <li class="logout" style="position: relative; top: 25rem;">
@@ -194,13 +194,13 @@
             <div class="form-container">
               <h3>Remarks To Dealer</h3>
               <div class="dialogue-box">
-                <textarea class="form-input" rows="4" placeholder="Enter remarks to Dealer" id="remark_to_dealer" name="remark_to_dealer"></textarea>
+                <textarea class="form-input" rows="4" placeholder="Enter remarks to Dealer" id="remark_to_dealer" name="remark_to_dealer" required></textarea>
               </div>
             </div>
             <div class="form-container">
                 <h3 style="position: relative; top: 2.5px;">Forward To</h3>
                 <label></label>
-                <select style="position: relative; left: 7rem; bottom: 1.5rem;" id="forward_to_dealer" name="forward_to_dealer">
+                <select style="position: relative; left: 7rem; bottom: 1.5rem;" id="forward_to_dealer" name="forward_to_dealer" required>
                 <option  value="">--Please choose an option--</option>
             <option value="Dealer1">Dealer1</option>
             <option value="Dealer2">Dealer2</option>
@@ -209,7 +209,7 @@
               </div>
             
             <div style="text-align: center;">
-              <button class="form-submit" style="position: relative; top: 0.7rem;" type="submit" value="Submit" >Forward To Dealer</button>
+              <button class="form-submit" style="position: relative; top: 0.7rem;" type="submit" value="Submit" id="submit" onclick="forward()">Forward To Dealer</button>
             </div>
           </div>
   
@@ -236,30 +236,73 @@ allDropdown.forEach(item=> {
 
     });
 });
+const urlParams = new URLSearchParams(window.location.search);
+            var id= urlParams.get('complaint_id');
 
-document
-        .getElementById("statusCheck")
-        .addEventListener("click", async (e) => {
-          e.preventDefault();
-          
-          const res = await fetch("/redirectToStatuscheck", {
-            method: "POST",
-            body: "formData",
-          });
-        });
-fetch('/getComplaint')
+       var COMPLAINTID = "";
+       var COMPLAINTDIV = "";
+       var COMPLAINTSEC = "";
+       var COMPLAINTDESC = "";
+      
+
+
+
+fetch('/checkstatus/'+id)
       .then(response => response.json())
       .then(data => {
         // Process the received data
-        console.log(data);
+        COMPLAINTID=data[0].complaint_id;
+        COMPLAINTDIV=data[0].complaint_division;
+        COMPLAINTSEC=data[0].complaint_section;
+        COMPLAINTDESC=data[0].complaint_desc;
+
         document.getElementById('complaint').innerText = JSON.stringify(data[0].complaint_id);
         document.getElementById('division').innerText = JSON.stringify(data[0].complaint_division);
         document.getElementById('section').innerText = JSON.stringify(data[0].complaint_section);
         document.getElementById('complaint_desc').innerText = JSON.stringify(data[0].complaint_desc);
       })
       .catch(error => console.log(error));
+     
+      async function forward(){
         
+        var COMPLAINTREMARKTODEALER = document.getElementById("remark_to_dealer").value;
+          var FORWARDTODEALER = document.getElementById("forward_to_dealer").value;
+          if(COMPLAINTREMARKTODEALER!='' && FORWARDTODEALER!=''){
+           
+          const data = new URLSearchParams();
+data.append('COMPLAINTID', COMPLAINTID);
+data.append('COMPLAINTREMARKTODEALER', COMPLAINTREMARKTODEALER);
+data.append('FORWARDTODEALER', FORWARDTODEALER);
+          console.log(data);
+          const res = await fetch("/dealerupdate", {
+            method: "PUT",
+            body: data,
+          });
 
+          if (res.ok) {
+            window.location.replace("/admin/admindashboard.html");
+          } else {
+            const err = res.json();
+            alert(err.description);
+          }
+          }
+      
+      }
+      
+        async function red(){
+          //   const ress = await fetch("/redirectToStatuscheck", {
+          //   method: "POST",
+          //   body: "formData",
+          // });
+
+          // if (ress.redirected) {
+          //        window.location = ress.url;
+          //      } else {
+          //        const err = ress.json();
+          //        alert(err.description);
+          //      }
+          window.location.replace("../statuscheck.html");
+}
 
 
 

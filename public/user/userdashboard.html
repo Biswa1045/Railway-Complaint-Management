@@ -26,7 +26,7 @@
             <li style="position: relative; top: 2rem;">
                 <a href="#">
                     <i class="fas fa-chart-bar"></i>
-                    <span id="statusCheck">Status Check</span>
+                    <span id="statusCheck" onclick="red()">Status Check</span>
                 </a>
             </li>
            
@@ -168,23 +168,7 @@ allDropdown.forEach(item=> {
 });
 
 
-document
-        .getElementById("statusCheck")
-        .addEventListener("click", async (e) => {
-          e.preventDefault();
-          
-          const res = await fetch("/redirectToStatuscheck", {
-            method: "POST",
-            body: "formData",
-          });
 
-          if (res.redirected) {
-                 window.location = res.url;
-               } else {
-                 const err = res.json();
-                 alert(err.description);
-               }
-        });
 
 
 
@@ -211,6 +195,8 @@ fetch('/userid')
         .getElementById("Complaintform")
         .addEventListener("submit", async (e) => {
           e.preventDefault();
+
+
           const formData = new FormData(e.target);
           const res = await fetch("/registerComplaint", {
 
@@ -221,14 +207,36 @@ fetch('/userid')
             // },
             body: formData,
           });
+          document.getElementById("name_complaint").value="";
+          document.getElementById("phone_complaint").value="";
+          document.getElementById("complaint_description").value="";
 
           if (res.ok) {
-            alert("Complaint registration successful!");
+            res.json().then(data => {
+    alert("Complaint registration successful. Your unique complaint ID is " + data);
+  });
+            
           } else {
             const err = res.json();
             alert(err.description);
           }
         });
+        
+          async function red(){
+  // const ress = await fetch("/redirectToStatuscheck", {
+  //           method: "POST",
+  //           body: "formData",
+  //         });
+
+  //         if (ress.redirected) {
+  //                window.location = ress.url;
+  //              } else {
+  //                const err = ress.json();
+  //                alert(err.description);
+  //              }
+  window.location.replace("../statuscheck.html");
+}
+
 
       
 

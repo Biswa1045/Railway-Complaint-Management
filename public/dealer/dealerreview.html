@@ -23,12 +23,12 @@
             </a>
           </li>
          
-          <li>
+          <!-- <li>
             <a href="#">
               <i class="fas fa-chart-bar"></i>
-              <span id="statusCheck">Status Check</span>
+              <span id="statusCheck" onclick="red()">Status Check</span>
             </a>
-          </li>
+          </li> -->
           
           <li class="logout" style="position: relative; top: 25rem;">
             <a href="#">
@@ -109,12 +109,12 @@
             <div class="form-container">
                 <h3>Remarks To Admin</h3>
                 <div class="dialogue-box">
-                    <textarea class="form-input" rows="4" placeholder="Enter remarks to admin"></textarea>
+                    <textarea class="form-input" rows="4" placeholder="Enter remarks to admin" id="remark_to_admin"></textarea>
                 </div>
             </div>
 
             <div style="text-align: center;">
-                <button class="form-submit">Forward To Admin</button>
+                <button class="form-submit" onclick="forward()">Forward To Admin</button>
             </div>
         </div>
 
@@ -124,7 +124,8 @@
 
     <script>
       const allDropdown = document.querySelectorAll('.sidebar .side-dropdown');
-
+      const urlParams = new URLSearchParams(window.location.search);
+            var id= urlParams.get('complaint_id');
 allDropdown.forEach(item=> {
     const a = item.parentElement.querySelector('a:first-child');
     a.addEventListener('click',function(e){
@@ -136,11 +137,15 @@ allDropdown.forEach(item=> {
 
     });
 });
-fetch('/getComplaint')
+
+      var COMPLAINTID= "";
+      fetch('/checkstatus/'+id)
       .then(response => response.json())
       .then(data => {
         // Process the received data
-        console.log(data);
+        COMPLAINTID=data[0].complaint_id;
+       
+
         document.getElementById('complaint').innerText = JSON.stringify(data[0].complaint_id);
         document.getElementById('division').innerText = JSON.stringify(data[0].complaint_division);
         document.getElementById('section').innerText = JSON.stringify(data[0].complaint_section);
@@ -149,16 +154,49 @@ fetch('/getComplaint')
       })
       .catch(error => console.log(error));
 
-      document
-        .getElementById("statusCheck")
-        .addEventListener("click", async (e) => {
-          e.preventDefault();
+      async function forward(){
+        
+        var COMPLAINTREMARKTOADMIN = document.getElementById("remark_to_admin").value;
           
-          const res = await fetch("/redirectToStatuscheck", {
-            method: "POST",
-            body: "formData",
+          if(COMPLAINTREMARKTOADMIN!=''){
+           
+          const data = new URLSearchParams();
+data.append('COMPLAINTID', COMPLAINTID);
+data.append('COMPLAINTREMARKTOADMIN', COMPLAINTREMARKTOADMIN);
+
+          const res = await fetch("/dealerforward", {
+            method: "PUT",
+            body: data,
           });
-        });
+          if (res.ok) {
+          //  history.back();
+       //   window.location="/dealer/dealerdashboard.html";
+          window.location.replace("/dealer/dealerdashboard.html");
+          } else {
+            const err = res.json();
+            alert(err.description);
+          }
+          }
+      
+      
+
+
+      }
+      
+      async function red(){
+  // const ress = await fetch("/redirectToStatuscheck", {
+  //           method: "POST",
+  //           body: "formData",
+  //         });
+
+  //         if (ress.redirected) {
+  //                window.location = ress.url;
+  //              } else {
+  //                const err = ress.json();
+  //                alert(err.description);
+  //              }
+  window.location.replace("../statuscheck.html");
+}
 
     </script>
 </body>

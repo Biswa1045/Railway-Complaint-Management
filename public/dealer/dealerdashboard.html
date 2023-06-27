@@ -25,12 +25,12 @@
           </a>
         </li>
        
-        <li>
+        <!-- <li>
           <a href="#">
             <i class="fas fa-chart-bar"></i>
-            <span id="statusCheck" >Status Check</span>
+            <span id="statusCheck" onclick="red()">Status Check</span>
           </a>
-        </li>
+        </li> -->
         
         <li class="logout" style="position: relative; top: 25rem;">
           <a href="#">
@@ -220,12 +220,8 @@
     
   </div>
       
-
-    <!-- </div> -->
-
-    <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-
     <script >
+     
       const allDropdown = document.querySelectorAll('.sidebar .side-dropdown');
 
 allDropdown.forEach(item=> {
@@ -241,37 +237,32 @@ allDropdown.forEach(item=> {
 });
 
 
-        document
-        .getElementById("statusCheck")
-        .addEventListener("click", async (e) => {
-          e.preventDefault();
-          
-          const res = await fetch("/redirectToStatuscheck", {
-            method: "POST",
-            body: "formData",
-          });
+async function red(){
+  // const ress = await fetch("/redirectToStatuscheck", {
+  //           method: "POST",
+  //           body: "formData",
+  //         });
 
-          if (res.redirected) {
-                 window.location = res.url;
-               } else {
-                 const err = res.json();
-                 alert(err.description);
-               }
-        });
+  //         if (ress.redirected) {
+  //                window.location = ress.url;
+  //              } else {
+  //                const err = ress.json();
+  //                alert(err.description);
+  //              }
+  window.location.replace("../statuscheck.html");
+}
 
 
-
-
-      fetch('/getDealerComplaintList')
+      var dealerid = localStorage.getItem("dealerid");
+      fetch('/getDealerComplaintList/'+dealerid)
       .then(response => response.json())
       .then(data => {
         buildTabledealer(data);
-        // Process the received data
-     //   document.getElementById('complaint').innerText = JSON.stringify(data[0].complaint_id);
-      })
+            })
       .catch(error => console.log(error));
 
         function buildTabledealer(data){
+          
           var table = document.getElementById('ComplaintTable');
 for (var i = 0; i < data.length; i++) {
   var row = "<tr>" +
@@ -281,7 +272,7 @@ for (var i = 0; i < data.length; i++) {
     "<td>" + data[i].complaint_section + "</td>" +
     "<td>" + data[i].complaint_desc.substring(0, 50) + "</td>" +
     "<td>" + data[i].complaint_remark_to_dealer.substring(0, 50) + "</td>" +
-     
+    "<td><a href=\"/dealer/dealerreview.html?complaint_id="+data[i].complaint_id+"\"><h3>review</h3></a></td>" +
     "</tr>";
   table.innerHTML += row;
 }

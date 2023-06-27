@@ -16,17 +16,14 @@
       <p1 style="color: black; font-size: 30px; font-weight: 35px;  position: relative; left: 12rem; top: 1.1rem;">Complaint Management System</p1>
       <nav class="navbar" style="position: relative; right: 5rem; top: 1.2rem;">
      
-        <button  class="button-29" role="button" id="checkStatus">Check Status</button>
+        <button  class="button-29" role="button" id="checkStatus" onclick="red()" >Check Status</button>
         <a  href="userLogin.html" style="font-size: x-large; left: 0.5rem;">User</a>
         <a href="adminLogin.html" style="font-size: x-large ;" >Admin</a>
         <a href="dealerLogin.html" style="font-size: x-large ;" >Dealer</a>
         <!-- <a href="#">Contact Us</a> -->
       </nav>
 
-      <!-- <form action="#" class="search-bar">
-        <input type="text" placeholder="search...." />
-        <button type="submit"><i class="bx bx-search"></i></button>
-      </form> -->
+    
     </header>
 
     <div class="background"></div>
@@ -61,26 +58,17 @@
 
             <div class="input-box">
               <span class="icon"><i class="bx bxs-envelope"></i> </span>
-              <input type="number" required id="phone_signin" name="phone_signin"/>
+              <input type="number" required id="phone_signin" maxlength="10" name="phone_signin"/>
               <label>Phone Number</label>
             </div>
 
             <div class="input-box">
               <span class="icon"><i class="bx bxs-lock-alt"></i></span>
-              <input type="password" required id="password_signin" name="password_signin"/>
+              <input type="password" required id="password_signin" minlength="4" name="password_signin"/>
               <label>password</label>
             </div>
 
-            <div class="remember-forgot">
-              <label
-                ><input
-                  type="checkbox"
-                  style="position: relative; top: 1.5px"
-                />
-                Remember me</label
-              >
-              <a href="#">Forgot password?</a>
-            </div>
+            
 
             <button type="submit" class="btn" id="signin">Sign In</button>
 
@@ -106,12 +94,12 @@
 
             <div class="input-box">
               <span class="icon"><i class="bx bxs-envelope"></i> </span>
-              <input type="number" required name="phone" id="user_phone" />
+              <input type="number" required name="phone" maxlength="10" id="user_phone" />
               <label>Phone</label>
             </div>
             <div class="input-box">
               <span class="icon"><i class="bx bxs-lock-alt"></i></span>
-              <input type="password" required  name="password"
+              <input type="password" required minlength="4" name="password"
               id="user_password"/>
               <label> Create password</label>
             </div>
@@ -211,23 +199,19 @@
                 }
               });
       
-              document
-        .getElementById("checkStatus")
-        .addEventListener("click", async (e) => {
-          e.preventDefault();
-          
-          const res = await fetch("/redirectToStatuscheck", {
+              async function red(){
+  const ress = await fetch("/redirectToStatuscheck", {
             method: "POST",
             body: "formData",
           });
 
-          if (res.redirected) {
-                 window.location = res.url;
+          if (ress.redirected) {
+                 window.location = ress.url;
                } else {
-                 const err = res.json();
+                 const err = ress.json();
                  alert(err.description);
                }
-        });
+}
       
       
           </script>
