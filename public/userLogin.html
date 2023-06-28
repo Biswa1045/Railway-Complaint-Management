@@ -17,9 +17,9 @@
       <nav class="navbar" style="position: relative; right: 5rem; top: 1.2rem;">
      
         <button  class="button-29" role="button" id="checkStatus" onclick="red()" >Check Status</button>
-        <a  href="userLogin.html" style="font-size: x-large; left: 0.5rem;">User</a>
+        <a  href="userLogin.html" style="font-size: x-large; left: 0.5rem; color: blue;">User</a>
         <a href="adminLogin.html" style="font-size: x-large ;" >Admin</a>
-        <a href="dealerLogin.html" style="font-size: x-large ;" >Dealer</a>
+        <a href="dealerLogin.html" style="font-size: x-large;;" >Dealer</a>
         <!-- <a href="#">Contact Us</a> -->
       </nav>
 
@@ -67,7 +67,18 @@
               <input type="password" required id="password_signin" minlength="4" name="password_signin"/>
               <label>User password</label>
             </div>
-
+            <div class="remember-forgot">
+              <label
+                >
+                <input
+                onclick="myFunction2()"
+                  type="checkbox"
+                  style="position: relative; top: 1.5px"
+                />
+               Show password </label
+              >
+              
+            </div>
             
 
             <button type="submit" class="btn" id="signin">Sign In</button>
@@ -102,15 +113,17 @@
               <input type="password" required minlength="4" name="password"
               id="user_password"/>
               <label> Create password</label>
+             
             </div>
 
             <div class="remember-forgot">
               <label
                 ><input
+                onclick="myFunction()"
                   type="checkbox"
                   style="position: relative; top: 1.5px"
                 />
-                I agree to the terms & conditions </label
+               Show password </label
               >
               
             </div>
@@ -215,7 +228,22 @@
                  alert(err.description);
                }
 }
-      
+function myFunction() {
+  var x = document.getElementById("user_password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+function myFunction2() {
+  var x = document.getElementById("password_signin");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
       
           </script>
   </body>

@@ -92,7 +92,7 @@ body{
     width: 100%;
     bottom: -6px;
     height: 2px;
-    background: #e4e4e4;
+    background: black;
     border-radius: 5px;
     transform: translateY(10px);
     opacity: 0;

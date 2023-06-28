@@ -18,7 +18,7 @@
         <button  class="button-29" role="button" id="checkStatus" onclick="red()" >Check Status</button>
         <a  href="userLogin.html" style="font-size: x-large; left: 0.5rem;">User</a>
         <a href="adminLogin.html" style="font-size: x-large ;" >Admin</a>
-        <a href="dealerLogin.html" style="font-size: x-large ;" >Dealer</a>
+        <a href="dealerLogin.html" style="font-size: x-large; color: blue;" >Dealer</a>
       
       </nav>
 
@@ -60,7 +60,18 @@
               <input type="password" required id="password_dealer_signin" name="password_dealer_signin"/>
               <label>Dealer password</label>
             </div>
-
+            <div class="remember-forgot">
+              <label
+                >
+                <input
+                onclick="myFunction2()"
+                  type="checkbox"
+                  style="position: relative; top: 1.5px"
+                />
+               Show password </label
+              >
+              
+            </div>
             <button type="submit" class="btn" style="position: relative; top:1rem" id="signin">Sign In</button>
 
           
@@ -115,6 +126,15 @@
                  const err = ress.json();
                  alert(err.description);
                }
+}
+
+function myFunction2() {
+  var x = document.getElementById("password_dealer_signin");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
 }
           </script> 
   </body>
