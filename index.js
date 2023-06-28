@@ -70,7 +70,7 @@ app.post("/registeruser", multer().none(), async function (req, res) {
     const sql = await new AsyncSQL();
 
     const querystring =
-      "INSERT INTO user_table (user_id, user_name, user_password, user_phone) VALUES (?, ?, ?, ?)";
+      "INSERT INTO user_table (user_id, user_name, user_password, user_email) VALUES (?, ?, ?, ?)";
 
     await sql.query(querystring, values);
     await sql.end();
@@ -95,7 +95,7 @@ app.post('/signinuser', multer().none(), async function(request, response) {
     // Execute SQL query that'll select the account from the database based on the specified username and password
     //	const useremail = 'biswajitsahu1045@gmail.com';
     // const password = '4444444444';
-    const querys = `SELECT * FROM user_table WHERE user_phone = ? AND user_password = ?`;
+    const querys = `SELECT * FROM user_table WHERE user_email = ? AND user_password = ?`;
 
     // Execute the query
     const [results] = await sql.query(querys, [useremail, password]);
@@ -128,7 +128,7 @@ app.post("/signinadmin", multer().none(), async function (request, response) {
   let people = ["geddy", "neil", "alex"];
   let html = ejs.render('<%= people.join(", "); %>', { people: people });
 
-  let userphone = request.body["phone_admin_signin"];
+  let username = request.body["phone_admin_signin"];
   let password = request.body["password_admin_signin"];
   // const values=["biswajitsahu1045@gmail.com","4444444444"];
   // Ensure the input fields exists and are not empty
@@ -137,10 +137,10 @@ app.post("/signinadmin", multer().none(), async function (request, response) {
     // Execute SQL query that'll select the account from the database based on the specified username and password
     //	const useremail = 'biswajitsahu1045@gmail.com';
     // const password = '4444444444';
-    const querys = `SELECT * FROM admin_table WHERE admin_phone = ? AND admin_password = ?`;
+    const querys = `SELECT * FROM admin_table WHERE admin_name = ? AND admin_password = ?`;
 
     // Execute the query
-    const [results] = await sql.query(querys, [userphone, password]);
+    const [results] = await sql.query(querys, [username, password]);
     await sql.end();
 
     // Process the results
