@@ -93,7 +93,11 @@
                 // alert("Dealer login successful!");
                 var phone_dealer = document.getElementById("phone_dealer_signin").value;
                 localStorage.setItem("dealerid", phone_dealer);
-                window.location = res.url;
+                var target = "_blank"; 
+                window.open(res.url,target);
+               
+
+
                } else {
                  const err = res.json();
                  alert(err.description);

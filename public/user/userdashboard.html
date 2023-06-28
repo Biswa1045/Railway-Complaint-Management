@@ -33,7 +33,7 @@
             <li class="logout" style="position: relative; top: 15rem;" >
                 <a href="#">
                     <i class="fas fa-sign-out-alt"></i>
-                    <span>Logout</span>
+                    <span onclick="logout()" >Logout</span>
                 </a>
             </li>
         </u1>
@@ -151,7 +151,10 @@
     </div>
 
     <script >
-
+ var userid = localStorage.getItem("userid");
+      if(userid=="null"){
+        window.location.replace("../userLogin.html");
+      }
 
 const allDropdown = document.querySelectorAll('.sidebar .side-dropdown');
 
@@ -223,20 +226,23 @@ fetch('/userid')
         });
         
           async function red(){
-  // const ress = await fetch("/redirectToStatuscheck", {
-  //           method: "POST",
-  //           body: "formData",
-  //         });
-
-  //         if (ress.redirected) {
-  //                window.location = ress.url;
-  //              } else {
-  //                const err = ress.json();
-  //                alert(err.description);
-  //              }
+            var userselection = confirm("Are you sure you want to logout?");
+if (userselection == true){
+  localStorage.setItem("userid","null");
   window.location.replace("../statuscheck.html");
+  
+  }
+  
 }
-
+function logout(){
+var userselection = confirm("Are you sure you want to logout?");
+if (userselection == true){
+  localStorage.setItem("userid","null");
+  window.location.replace("../userLogin.html");
+  window.close();
+  }
+  
+}
 
       
 

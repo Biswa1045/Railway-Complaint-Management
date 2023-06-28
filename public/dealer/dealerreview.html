@@ -33,7 +33,7 @@
           <li class="logout" style="position: relative; top: 25rem;">
             <a href="#">
               <i class="fas fa-sign-out-alt"></i>
-              <span>Logout</span>
+              <span id="logout()" >Logout</span>
             </a>
           </li>
         </u1>
@@ -120,8 +120,6 @@
 
     </div>
 
-    <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-
     <script>
       const allDropdown = document.querySelectorAll('.sidebar .side-dropdown');
       const urlParams = new URLSearchParams(window.location.search);
@@ -178,9 +176,6 @@ data.append('COMPLAINTREMARKTOADMIN', COMPLAINTREMARKTOADMIN);
           }
           }
       
-      
-
-
       }
       
       async function red(){
@@ -197,7 +192,15 @@ data.append('COMPLAINTREMARKTOADMIN', COMPLAINTREMARKTOADMIN);
   //              }
   window.location.replace("../statuscheck.html");
 }
-
+function logout(){
+var userselection = confirm("Are you sure you want to logout?");
+if (userselection == true){
+  localStorage.setItem("dealerid","null");
+  window.location.replace("../dealerLogin.html");
+  window.close();
+  }
+  
+}
     </script>
 </body>
 

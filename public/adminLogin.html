@@ -106,7 +106,10 @@
                  body: formDataSignin,
                });
                if (res.redirected) {
-                 window.location = res.url;
+                localStorage.setItem("adminid","admin");
+                var target = "_blank"; 
+                window.open(res.url,target);
+                
                } else {
                  const err = res.json();
                  alert(err.description);

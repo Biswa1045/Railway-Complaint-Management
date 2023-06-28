@@ -58,8 +58,8 @@
 
             <div class="input-box">
               <span class="icon"><i class="bx bxs-envelope"></i> </span>
-              <input type="number" required id="phone_signin" maxlength="10" name="phone_signin"/>
-              <label>Phone Number</label>
+              <input type="number" required id="phone_signin" maxlength="10" name="phone_signin"  required >
+              <label style="position: relative; top: -3.5rem">Phone Number</label>
             </div>
 
             <div class="input-box">
@@ -189,7 +189,10 @@
                   body: formDataSignin,
                 });
                 if (res.redirected) {
-                  window.location = res.url;
+                  localStorage.setItem("userid","user");
+                  var target = "_blank"; 
+                  window.open(res.url,target);
+                 
                //  const user = res.json();
                  // alert("User login successful!");
                   // goto home page

@@ -150,8 +150,7 @@ app.post("/signinadmin", multer().none(), async function (request, response) {
         description: "username or password invalid",
       });
     } else {
-      // use express-session or something similar to persist the session
-
+    
       const user = results[0];
       console.log("User data:", user);
    

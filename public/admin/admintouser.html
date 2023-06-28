@@ -36,7 +36,7 @@
         <li class="logout" style="position: relative; top: 25rem">
           <a href="#">
             <i class="fas fa-sign-out-alt"></i>
-            <span>Logout</span>
+            <span onclick="logout()" >Logout</span>
           </a>
         </li>
       </u1>
@@ -161,6 +161,7 @@
     </div>
 
     <script>
+     
       const allDropdown = document.querySelectorAll(".sidebar .side-dropdown");
 
       allDropdown.forEach((item) => {
@@ -208,6 +209,7 @@ data.append('COMPLAINTREMARKTOUSER', COMPLAINTREMARKTOUSER);
           });
 
           if (res.ok) {
+            localStorage.setItem("adminid","admin");
             window.location.replace("/admin/admindashboard.html");
           } else {
             const err = res.json();
@@ -236,6 +238,15 @@ data.append('COMPLAINTREMARKTOUSER', COMPLAINTREMARKTOUSER);
   //                alert(err.description);
   //              }
   window.location.replace("../statuscheck.html");
+}
+function logout(){
+var userselection = confirm("Are you sure you want to logout?");
+if (userselection == true){
+  localStorage.setItem("adminid","null");
+  window.location.replace("../adminLogin.html");
+  window.close();
+  }
+  
 }
       </script>
 </body>

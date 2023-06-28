@@ -25,17 +25,12 @@
           </a>
         </li>
        
-        <!-- <li>
-          <a href="#">
-            <i class="fas fa-chart-bar"></i>
-            <span id="statuscheck" onclick="red()">Status Check</span>
-          </a>
-        </li> -->
+        
         
         <li class="logout" style="position: relative; top: 25rem;">
           <a href="#">
             <i class="fas fa-sign-out-alt"></i>
-            <span>Logout</span>
+            <span onclick="logout()" >Logout</span>
           </a>
         </li>
       </u1>
@@ -120,7 +115,10 @@ allDropdown.forEach(item=> {
     });
 });
 
-    
+var adminid = localStorage.getItem("adminid");
+      if(adminid=="null"){
+        window.location.replace("../adminLogin.html");
+      }
 
 
 fetch('/getUserComplaintList')
@@ -171,21 +169,20 @@ for (var i = 0; i < data.length; i++) {
 }
         }
 async function red(){
-  // const ress = await fetch("/redirectToStatuscheck", {
-  //           method: "POST",
-  //           body: "formData",
-  //         });
-
-  //         if (ress.redirected) {
-  //                window.location = ress.url;
-  //              } else {
-  //                const err = ress.json();
-  //                alert(err.description);
-  //              }
+ 
   window.location.replace("../statuscheck.html");
 }
        
 
+function logout(){
+var userselection = confirm("Are you sure you want to logout?");
+if (userselection == true){
+  localStorage.setItem("adminid","null");
+  window.location.replace("../adminLogin.html");
+  window.close();
+  }
+  
+}
     </script>
   </body>
 </html>
